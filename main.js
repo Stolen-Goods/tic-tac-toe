@@ -9,6 +9,7 @@ const squareEight = document.querySelector(".square-8");
 const squareNine = document.querySelector(".square-9");
 const header = document.querySelector("h1");
 let playerTurn = 1;
+let gameTurnCount = 1;
 
 const gameBoard = {
   board: [
@@ -41,13 +42,24 @@ const playerTwo = new Player("Crystal", "O");
         gameBoard.board[i] = playerOne.marker;
         header.textContent = `${playerTwo.name}'s Turn`;
         winCondition();
+        if (winCondition()) {
+          header.textContent = `${playerOne.name} Wins!`;
+        }
         playerTurn = 2;
+        gameTurnCount++;
+        if (gameTurnCount === 10) {
+          header.textContent = "It's a Tie!";
+        }
       } else if (playerTurn === 2 && square.textContent === "") {
         square.textContent = playerTwo.marker;
         gameBoard.board[i] = playerTwo.marker;
         header.textContent = `${playerOne.name}'s Turn`;
         winCondition();
+        if (winCondition()) {
+          header.textContent = `${playerTwo.name} Wins!`;
+        }
         playerTurn = 1;
+        gameTurnCount++;
       }
     });
   });
@@ -58,48 +70,48 @@ function winCondition() {
     gameBoard.board[0] === gameBoard.board[1] &&
     gameBoard.board[0] === gameBoard.board[2]
   ) {
-    console.log("winner!");
+    return true;
   }
   if (
     gameBoard.board[3] === gameBoard.board[4] &&
     gameBoard.board[3] === gameBoard.board[5]
   ) {
-    console.log("winner!");
+    return true;
   }
   if (
     gameBoard.board[6] === gameBoard.board[7] &&
     gameBoard.board[6] === gameBoard.board[8]
   ) {
-    console.log("winner!");
+    return true;
   }
   if (
     gameBoard.board[0] === gameBoard.board[3] &&
     gameBoard.board[0] === gameBoard.board[6]
   ) {
-    console.log("winner!");
+    return true;
   }
   if (
     gameBoard.board[1] === gameBoard.board[4] &&
     gameBoard.board[1] === gameBoard.board[7]
   ) {
-    console.log("winner!");
+    return true;
   }
   if (
     gameBoard.board[2] === gameBoard.board[5] &&
     gameBoard.board[2] === gameBoard.board[8]
   ) {
-    console.log("winner!");
+    return true;
   }
   if (
     gameBoard.board[0] === gameBoard.board[4] &&
     gameBoard.board[0] === gameBoard.board[8]
   ) {
-    console.log("winner!");
+    return true;
   }
   if (
     gameBoard.board[2] === gameBoard.board[4] &&
     gameBoard.board[2] === gameBoard.board[6]
   ) {
-    console.log("winner!");
+    return true;
   }
 }
