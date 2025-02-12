@@ -1,0 +1,33 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: #008080;
+  overflow: hidden;
+}
+
+h1 {
+  text-align: center;
+  font-size: 7rem;
+  margin-top: 3rem;
+}
+
+.container div {
+  border: 3px solid #7a4c58;
+  background-color: pink;
+  border-radius: 10px;
+  font-size: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  min-height: 100vh;
+  /* justify-content: center;
+  align-content: center; */
+  place-content: center;
+  display: grid;
+  grid-template: repeat(3, 10%) / repeat(3, 10%);
+  gap: 10px;
+}
