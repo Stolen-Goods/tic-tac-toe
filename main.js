@@ -8,8 +8,7 @@ const squareSeven = document.querySelector(".square-7");
 const squareEight = document.querySelector(".square-8");
 const squareNine = document.querySelector(".square-9");
 const header = document.querySelector("h1");
-let playerTurn = 1;
-let gameTurnCount = 1;
+const button = document.getElementById("button");
 
 const gameBoard = {
   board: [
@@ -34,6 +33,8 @@ const playerOne = new Player("Matt", "X");
 const playerTwo = new Player("Crystal", "O");
 
 (function game() {
+  let gameTurnCount = 1;
+  let playerTurn = 1;
   gameBoard.board.forEach((square, i) => {
     header.textContent = `${playerOne.name}'s Turn`;
     square.addEventListener("click", () => {
@@ -41,29 +42,38 @@ const playerTwo = new Player("Crystal", "O");
         square.textContent = playerOne.marker;
         gameBoard.board[i] = playerOne.marker;
         header.textContent = `${playerTwo.name}'s Turn`;
+        playerTurn = 2;
+        gameTurnCount++;
         winCondition();
         if (winCondition()) {
           header.textContent = `${playerOne.name} Wins!`;
+          playerTurn = 0;
+          button.classList.remove("hidden");
         }
-        playerTurn = 2;
-        gameTurnCount++;
         if (gameTurnCount === 10) {
           header.textContent = "It's a Tie!";
+          button.classList.remove("hidden");
         }
       } else if (playerTurn === 2 && square.textContent === "") {
         square.textContent = playerTwo.marker;
         gameBoard.board[i] = playerTwo.marker;
         header.textContent = `${playerOne.name}'s Turn`;
+        playerTurn = 1;
+        gameTurnCount++;
         winCondition();
         if (winCondition()) {
           header.textContent = `${playerTwo.name} Wins!`;
+          playerTurn = 0;
+          button.classList.remove("hidden");
         }
-        playerTurn = 1;
-        gameTurnCount++;
       }
     });
   });
 })();
+
+button.addEventListener("click", () => {
+  location.reload();
+});
 
 function winCondition() {
   if (

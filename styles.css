@@ -6,10 +6,28 @@
   overflow: hidden;
 }
 
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 h1 {
-  text-align: center;
   font-size: 7rem;
   margin-top: 3rem;
+}
+
+button {
+  font-size: 1rem;
+  font-weight: bold;
+  width: 5%;
+  padding: 0.5rem;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 .container div {
@@ -24,8 +42,6 @@ h1 {
 
 .container {
   min-height: 100vh;
-  /* justify-content: center;
-  align-content: center; */
   place-content: center;
   display: grid;
   grid-template: repeat(3, 10%) / repeat(3, 10%);
